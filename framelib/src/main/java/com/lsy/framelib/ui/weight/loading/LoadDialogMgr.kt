@@ -1,8 +1,6 @@
 package com.lsy.framelib.ui.weight.loading
 
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import timber.log.Timber
 
 /**
  * Title : 加载Dialog管理

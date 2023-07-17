@@ -10,12 +10,14 @@
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/loading_animation"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="   loading..."
+        android:text="@string/loading_hint"
+        android:visibility="gone"
         android:textColor="@android:color/black"
         android:textSize="16sp"/>
 </LinearLayout>

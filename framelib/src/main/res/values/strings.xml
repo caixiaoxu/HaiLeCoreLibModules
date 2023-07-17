@@ -2,5 +2,6 @@
 <resources>
     <string name="double_back_hint">再按一次退出</string>
 
+    <string name="loading_hint">请求中...</string>
     <string name="success_album_hint">已保存至相册...</string>
 </resources>

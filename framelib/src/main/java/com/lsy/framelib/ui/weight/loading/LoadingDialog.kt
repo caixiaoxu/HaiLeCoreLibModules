@@ -34,6 +34,17 @@ class LoadingDialog : AppCompatDialogFragment() {
         // 不可取消
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
+        dialog?.window?.setBackgroundDrawableResource(R.drawable.bg_loading)
         return inflater.inflate(R.layout.dialog_loading, container, false);
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        //宽高
+        dialog?.window?.setLayout(
+            resources.getDimensionPixelOffset(R.dimen.loading_wh),
+            resources.getDimensionPixelOffset(R.dimen.loading_wh)
+        )
     }
 }
