@@ -6,4 +6,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+    <!--安卓13之后读取图片权限-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!--安卓13之后读取视频权限-->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <!--安卓13之后读取音频权限-->
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 </manifest>
