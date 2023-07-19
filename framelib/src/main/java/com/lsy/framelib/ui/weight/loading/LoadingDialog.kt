@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.core.content.ContextCompat
 import com.lsy.framelib.R
 
 /**
@@ -20,7 +22,7 @@ import com.lsy.framelib.R
  * <author> <time> <version> <desc>
  * 作者姓名 修改时间 版本号 描述
  */
-class LoadingDialog : AppCompatDialogFragment() {
+class LoadingDialog(private val loadingRes: Int) : AppCompatDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +37,11 @@ class LoadingDialog : AppCompatDialogFragment() {
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.window?.setBackgroundDrawableResource(R.drawable.bg_loading)
-        return inflater.inflate(R.layout.dialog_loading, container, false);
+        return inflater.inflate(R.layout.dialog_loading, container, false).apply {
+            findViewById<ProgressBar>(R.id.progress_bar).indeterminateDrawable =
+                ContextCompat.getDrawable(requireContext(), loadingRes)
+        }
     }
-
 
     override fun onResume() {
         super.onResume()

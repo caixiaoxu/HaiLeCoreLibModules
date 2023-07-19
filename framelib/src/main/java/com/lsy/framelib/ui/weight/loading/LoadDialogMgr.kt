@@ -1,6 +1,7 @@
 package com.lsy.framelib.ui.weight.loading
 
 import androidx.fragment.app.FragmentManager
+import com.lsy.framelib.R
 
 /**
  * Title : 加载Dialog管理
@@ -15,6 +16,8 @@ import androidx.fragment.app.FragmentManager
 object LoadDialogMgr {
     private const val LOAD_TIP_DIALOG_TAG = "LoadTipDialog"
 
+    var loadingRes = R.drawable.loading_animation
+
     /**
      * 显示Loading弹窗
      */
@@ -23,7 +26,7 @@ object LoadDialogMgr {
         val loadingDialog = if (null != fragment && fragment is LoadingDialog) {
             fragment
         } else {
-            LoadingDialog()
+            LoadingDialog(loadingRes)
         }
         if (loadingDialog.isAdded) {
             return
