@@ -35,6 +35,10 @@ object SystemPermissionHelper {
         val PhoneStatePermissions = arrayOf(
             Manifest.permission.READ_PHONE_STATE,
         )
+
+        val CallPhonePermissions = arrayOf(
+            Manifest.permission.CALL_PHONE,
+        )
     }
 
     /**
@@ -65,6 +69,11 @@ object SystemPermissionHelper {
      * 手机状态权限
      */
     fun phoneStatePermissions() = NormalPermissions.PhoneStatePermissions
+
+    /**
+     * 拨号权限
+     */
+    fun callPhonePermissions() = NormalPermissions.CallPhonePermissions
 
     /**
      * 安装权限
