@@ -23,6 +23,9 @@ object SystemPermissionHelper {
         val readWritePermissions = arrayOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
+        val cameraPermissions = arrayOf(
+            Manifest.permission.CAMERA
+        )
         val InstallPackagesPermissions = arrayOf(
             Manifest.permission.REQUEST_INSTALL_PACKAGES
         )
@@ -64,6 +67,11 @@ object SystemPermissionHelper {
      * 定位权限
      */
     fun locationPermissions() = NormalPermissions.LocationPermissions
+
+    /**
+     * 相机权限
+     */
+    fun cameraPermissions() = NormalPermissions.cameraPermissions
 
     /**
      * 手机状态权限
