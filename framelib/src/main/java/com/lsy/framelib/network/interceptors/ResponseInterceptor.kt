@@ -2,8 +2,10 @@ package com.lsy.framelib.network.interceptors
 
 import com.lsy.framelib.network.exception.RequestException
 import com.lsy.framelib.network.intfs.IInterceptor
+import com.lsy.framelib.utils.SToast
 import okhttp3.Interceptor
 import okhttp3.Response
+import timber.log.Timber
 
 /**
  * Title : 处理response的异常code
@@ -26,7 +28,10 @@ class ResponseInterceptor(private val handlerResponseException: ((response: Resp
             // 默认处理
             when (response.code()) {
                 200 -> response
-                else -> throw RequestException(response.code(), response.message())
+                else -> {
+                    Timber.e("错误码：${response.code()}, 错误信息${response.message()}")
+                    response
+                }
             }
         }
     }
