@@ -2,6 +2,7 @@ package com.lsy.framelib.utils.gson
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import org.json.JSONObject
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
@@ -54,6 +55,16 @@ object GsonUtils {
      */
     fun <T> json2ClassType(json: String?, type: Type?): T? =
         json?.let { gson.fromJson(it, type) }
+
+    /**
+     * json转json对象
+     */
+    fun <T> json2JsonObject(json: String?): JsonObject? = try {
+        JsonParser.parseString(json).asJsonObject
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
 
     /**
      * json转指定类型
