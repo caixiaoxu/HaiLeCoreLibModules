@@ -59,7 +59,7 @@ object GsonUtils {
     /**
      * json转json对象
      */
-    fun <T> json2JsonObject(json: String?): JsonObject? = try {
+    fun json2JsonObject(json: String?): JsonObject? = try {
         JsonParser.parseString(json).asJsonObject
     } catch (e: Exception) {
         e.printStackTrace()
