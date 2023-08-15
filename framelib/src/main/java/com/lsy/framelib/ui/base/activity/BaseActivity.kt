@@ -1,5 +1,6 @@
 package com.lsy.framelib.ui.base.activity
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
@@ -33,8 +34,19 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
     // 是否高度(状态栏字体颜色)
     protected open fun isDark() = true
 
+    protected open fun isAloneFontSize() = true
+
     // 屏幕方向
     protected open fun orientation() = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+    override fun attachBaseContext(newBase: Context) {
+        // 独立字体大小
+        val context =
+            if (isAloneFontSize()) newBase.createConfigurationContext(newBase.resources.configuration.apply {
+                fontScale = 1f
+            }) else newBase
+        super.attachBaseContext(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
