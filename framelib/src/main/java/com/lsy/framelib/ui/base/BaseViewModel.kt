@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lsy.framelib.business.UnPeekLiveData
+import com.lsy.framelib.network.exception.CommonCustomException
 import com.lsy.framelib.utils.SToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +44,10 @@ open class BaseViewModel : ViewModel() {
                 block()
             } catch (e: Exception) {
                 error?.invoke(e) ?: withContext(Dispatchers.Main) {
-                    e.message?.let { it1 -> SToast.showToast(msg = it1) }
+                    // 自己定义的错误显示报错提示
+                    if (e is CommonCustomException) {
+                        e.message?.let { it1 -> SToast.showToast(msg = it1) }
+                    }
                     Timber.d("请求失败或异常$e")
                 }
             } finally {
