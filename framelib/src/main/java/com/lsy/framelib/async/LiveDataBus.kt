@@ -53,6 +53,10 @@ object LiveDataBus {
         with(key)?.postValue(value)
     }
 
+    fun remove(key:String){
+        bus.remove(key)
+    }
+
     private class ObserverWrapper<T>(private val observer: Observer<T>?) : Observer<T> {
 
         override fun onChanged(value: T) {
