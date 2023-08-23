@@ -51,10 +51,10 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.addActivity(activityTag(), this)
-        // 设置状态栏的距离
-        setRootViewPT()
         // 屏幕方向
         setScreenOrientation()
+        // 设置状态栏的距离
+        setRootViewPT()
 
         // 回退按钮
         backBtn()?.setOnClickListener { onBackListener() }
