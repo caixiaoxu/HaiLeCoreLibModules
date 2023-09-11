@@ -27,7 +27,7 @@ object SoftKeyboardUtils {
      */
     fun showOrHideSoftKeyboard(activity: Activity) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     /**
@@ -39,7 +39,7 @@ object SoftKeyboardUtils {
             val inputManager: InputMethodManager =
                 view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.showSoftInput(view, 0)
-        }, 60)
+        }, 500)
     }
 
     /**
