@@ -25,7 +25,7 @@ object SToast {
     fun showToast(
         context: Context? = Constants.APP_CONTEXT,
         msg: String,
-        duration: Int = Toast.LENGTH_SHORT
+        duration: Int = Toast.LENGTH_LONG
     ) {
         Toast.makeText(context, msg, duration).show()
     }
@@ -38,7 +38,7 @@ object SToast {
     fun showToast(
         context: Context? = Constants.APP_CONTEXT,
         msgResId: Int,
-        duration: Int = Toast.LENGTH_SHORT
+        duration: Int = Toast.LENGTH_LONG
     ) {
         Toast.makeText(context, msgResId, duration).show()
     }
