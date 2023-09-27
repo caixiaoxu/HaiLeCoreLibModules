@@ -26,5 +26,5 @@ data class ResponseList<T>(
     val page: Int,
     val pageSize: Int,
     val total: Int,
-    val items: MutableList<T>
+    val items: MutableList<T>?
 )
