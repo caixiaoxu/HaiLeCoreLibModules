@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.lsy.framelib.intfs.ILoadingDialog
+import com.lsy.framelib.network.exception.CommonCustomException
 import com.lsy.framelib.ui.weight.loading.LoadDialogMgr
 import com.lsy.framelib.utils.AppManager
 import com.lsy.framelib.utils.SToast
@@ -119,7 +120,11 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
                 block()
             } catch (e: Exception) {
                 error?.invoke(e) ?: withContext(Dispatchers.Main) {
-                    e.message?.let { it1 -> SToast.showToast(msg = it1) }
+                    if (e is CommonCustomException) {
+                        e.message?.let { it1 -> SToast.showToast(msg = it1) }
+                    } else {
+                        SToast.showToast(msg = "网络开小差~")
+                    }
                     Timber.d("请求失败或异常$e")
                 }
             } finally {

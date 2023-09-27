@@ -1,8 +1,6 @@
 package com.lsy.framelib.network.interceptors
 
-import com.lsy.framelib.network.exception.RequestException
 import com.lsy.framelib.network.intfs.IInterceptor
-import com.lsy.framelib.utils.SToast
 import okhttp3.Interceptor
 import okhttp3.Response
 import timber.log.Timber

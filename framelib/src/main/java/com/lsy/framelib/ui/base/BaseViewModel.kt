@@ -47,6 +47,8 @@ open class BaseViewModel : ViewModel() {
                     // 自己定义的错误显示报错提示
                     if (e is CommonCustomException) {
                         e.message?.let { it1 -> SToast.showToast(msg = it1) }
+                    } else {
+                        SToast.showToast(msg = "网络开小差~")
                     }
                     Timber.d("请求失败或异常$e")
                 }
