@@ -343,15 +343,15 @@ class SPUtils(spName: String, mode: Int) {
          * @return the single [SPUtils] instance
          */
         fun getInstance(spName: String, mode: Int): SPUtils {
-            var spName = spName
-            if (isSpace(spName)) spName = "spUtils"
-            var spUtils = SP_UTILS_MAP[spName]
+            var sName = spName
+            if (isSpace(sName)) sName = "spUtils"
+            var spUtils = SP_UTILS_MAP[sName]
             if (spUtils == null) {
                 synchronized(SPUtils::class.java) {
-                    spUtils = SP_UTILS_MAP[spName]
+                    spUtils = SP_UTILS_MAP[sName]
                     if (spUtils == null) {
-                        spUtils = SPUtils(spName, mode)
-                        SP_UTILS_MAP[spName] = spUtils!!
+                        spUtils = SPUtils(sName, mode)
+                        SP_UTILS_MAP[sName] = spUtils!!
                     }
                 }
             }
