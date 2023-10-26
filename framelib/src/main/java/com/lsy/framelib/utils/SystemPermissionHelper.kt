@@ -1,8 +1,11 @@
 package com.lsy.framelib.utils
 
 import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 
 /**
  * Title :
@@ -87,4 +90,16 @@ object SystemPermissionHelper {
      * 安装权限
      */
     fun installPackagesPermissions() = NormalPermissions.InstallPackagesPermissions
+
+    /**
+     * 判断是否有权限
+     */
+    fun checkPermissions(context: Context, permissions: Array<String>): Boolean =
+        permissions.all { checkPermission(context, it) }
+
+    /**
+     * 判断是否有权限
+     */
+    fun checkPermission(context: Context, permission: String): Boolean =
+        ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
 }
