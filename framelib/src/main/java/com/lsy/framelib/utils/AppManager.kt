@@ -68,7 +68,7 @@ object AppManager {
      */
     fun finishActivity(tag: String? = null, activity: Activity?) {
         finishActivity(activity)
-        tag?.let { activityMap.remove(tag) }
+        tag?.let { activityMap[tag]?.remove(activity) }
     }
 
     /**
