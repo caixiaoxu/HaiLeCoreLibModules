@@ -33,12 +33,12 @@ object SoftKeyboardUtils {
     /**
      * 显示软键盘
      */
-    fun showKeyboard(view: View) {
+    fun showKeyboard(view: EditText) {
         //调用系统输入法
         view.postDelayed({
             val inputManager: InputMethodManager =
                 view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.showSoftInput(view, 0)
+            inputManager.showSoftInput(view, InputMethodManager.SHOW_FORCED)
         }, 500)
     }
 
@@ -50,7 +50,6 @@ object SoftKeyboardUtils {
             view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         manager.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 
     /**
      * 判断软键盘是否显示方法
