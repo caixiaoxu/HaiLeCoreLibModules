@@ -1,5 +1,8 @@
 package com.lsy.framelib.utils
 
+import android.view.MotionEvent
+import android.widget.TextView
+
 /**
  * Title : 控件工具类
  * Author: Lsy
@@ -25,5 +28,18 @@ object ViewUtils {
         }
         lastClickTime = currentTime
         return false
+    }
+
+    /**
+     * 处理edittext和scrollview滑动问题
+     */
+    fun editTextSlide(result: TextView) {
+        result.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_MOVE) {
+                //这句话说的意思告诉父View我自己的事件我自己处理
+                v.parent.requestDisallowInterceptTouchEvent(true)
+            }
+            false
+        }
     }
 }
