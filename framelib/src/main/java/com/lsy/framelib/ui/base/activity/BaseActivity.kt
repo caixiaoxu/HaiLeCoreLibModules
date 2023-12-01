@@ -82,10 +82,13 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
      * 设置内容布局的上边距(状态栏的距离)
      */
     private fun setRootViewPT() {
-        if (!isFullScreen()) {
-            val rootView = window.decorView.findViewById<FrameLayout>(android.R.id.content)
-            rootView.setPadding(0, StatusBarUtils.getStatusBarHeight(), 0, 0)
-        }
+        val rootView = window.decorView.findViewById<FrameLayout>(android.R.id.content)
+        rootView.setPadding(
+            0,
+            if (!isFullScreen()) StatusBarUtils.getStatusBarHeight() else 0,// 状态栏高度
+            0,
+            if (StatusBarUtils.isFullScreenDevice(this)) 0 else StatusBarUtils.getNavigationBarHeight() //导航栏高度
+        )
     }
 
     /**
