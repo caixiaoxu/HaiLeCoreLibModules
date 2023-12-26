@@ -54,11 +54,18 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
         AppManager.addActivity(activityTag(), this)
         // 屏幕方向
         setScreenOrientation()
-        // 设置状态栏的距离
-        setRootViewPT()
 
         // 回退按钮
         backBtn()?.setOnClickListener { onBackListener() }
+
+        // 设置状态栏和导航栏的距离
+        StatusBarUtils.hasNavigationBars(this) {
+            val rootView = window.decorView.findViewById<FrameLayout>(android.R.id.content)
+            rootView.setPadding(
+                0, if (!isFullScreen()) StatusBarUtils.getStatusBarHeight() else 0,// 状态栏高度
+                0, it
+            )
+        }
     }
 
     /**
@@ -77,19 +84,6 @@ abstract class BaseActivity : AppCompatActivity(), ILoadingDialog {
      * 回退按钮
      */
     open fun backBtn(): View? = null
-
-    /**
-     * 设置内容布局的上边距(状态栏的距离)
-     */
-    private fun setRootViewPT() {
-        val rootView = window.decorView.findViewById<FrameLayout>(android.R.id.content)
-        rootView.setPadding(
-            0,
-            if (!isFullScreen()) StatusBarUtils.getStatusBarHeight() else 0,// 状态栏高度
-            0,
-            if (StatusBarUtils.isFullScreenDevice(this)) 0 else StatusBarUtils.getNavigationBarHeight() //导航栏高度
-        )
-    }
 
     /**
      * 设置屏幕方向
