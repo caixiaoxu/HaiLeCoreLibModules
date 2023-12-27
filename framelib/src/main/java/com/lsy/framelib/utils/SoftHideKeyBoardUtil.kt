@@ -25,7 +25,7 @@ class SoftHideKeyBoardUtil constructor(activity: Activity) {
     //只用获取一次
     private var isFirst = true
     //状态栏高度
-    private val statusBarHeight = 0
+    private val statusBarHeight = StatusBarUtils.getStatusBarHeight()
 
     init {
         //1､找到Activity的最外层布局控件，它其实是一个DecorView,它所用的控件就是FrameLayout
