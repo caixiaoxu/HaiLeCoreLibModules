@@ -18,12 +18,16 @@ import android.widget.FrameLayout
 class SoftHideKeyBoardUtil constructor(activity: Activity) {
     private var mChildOfContent: View?
     private var usableHeightPrevious = 0
+
     //为适应华为小米等手机键盘上方出现黑条或不适配
     private var frameLayoutParams: FrameLayout.LayoutParams?
+
     //获取setContentView本来view的高度
     private var contentHeight = 0
+
     //只用获取一次
     private var isFirst = true
+
     //状态栏高度
     private val statusBarHeight = StatusBarUtils.getStatusBarHeight()
 
@@ -34,7 +38,7 @@ class SoftHideKeyBoardUtil constructor(activity: Activity) {
         //3､给Activity的xml布局设置View树监听，当布局有变化，如键盘弹出或收起时，都会回调此监听
         mChildOfContent?.viewTreeObserver?.addOnGlobalLayoutListener {
             if (isFirst) {
-                contentHeight = mChildOfContent?.height ?:0 //兼容华为等机型
+                contentHeight = mChildOfContent?.height ?: 0 //兼容华为等机型
                 isFirst = false
             }
             //5､当前布局发生变化时，对Activity的xml布局进行重绘
@@ -51,14 +55,14 @@ class SoftHideKeyBoardUtil constructor(activity: Activity) {
         //2､如果当前可用高度和原始值不一样
         if (usableHeightNow != usableHeightPrevious) {
             //3､获取Activity中xml中布局在当前界面显示的高度
-            val usableHeightSansKeyboard = mChildOfContent?.rootView?.height ?:0
+            val usableHeightSansKeyboard = mChildOfContent?.rootView?.height ?: 0
             //4､Activity中xml布局的高度-当前可用高度
             val heightDifference = usableHeightSansKeyboard - usableHeightNow
             //5､高度差大于屏幕1/4时，说明键盘弹出
             if (heightDifference > usableHeightSansKeyboard / 4) {
                 // 6､键盘弹出了，Activity的xml布局高度应当减去键盘高度
                 frameLayoutParams?.height =
-                    usableHeightSansKeyboard - heightDifference + statusBarHeight
+                    usableHeightSansKeyboard - heightDifference - statusBarHeight
             } else {
                 frameLayoutParams?.height = contentHeight
             }
@@ -81,7 +85,7 @@ class SoftHideKeyBoardUtil constructor(activity: Activity) {
     /**
      * 销毁
      */
-    fun onDestroy(){
+    fun onDestroy() {
         mChildOfContent = null
     }
 }
